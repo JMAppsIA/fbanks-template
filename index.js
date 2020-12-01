@@ -3,10 +3,9 @@ const enterBottom = document.querySelectorAll(".enter-bottom");
 const imagePiece = document.querySelectorAll(".image-piece");
 const image5Report = document.querySelectorAll(".image-5-report");
 
-// const arrowDropDownFooter = document.querySelector("body > footer > div > div.flxb-footer-meta > div.footer-meta-block2 > div > div > a > i");
-let dropDownTarget = document.querySelector("body > footer > div > div.flxb-footer-meta > div.footer-meta-block2 > div > div");
-let closeDropDown = document.querySelector("body > footer > div > div.flxb-footer-meta > div.footer-meta-block2 > div > div > div > div > span");
+let loginDropDown = document.querySelector("body > nav > div > div:nth-child(4) > div");
 let dropdownShown = false;
+
 document.addEventListener("DOMContentLoaded", function(e) { 
   setTimeout(function() { 
     for (var x = 0; x < enter.length; x++) {
@@ -33,20 +32,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
   },300);
 });
 
-dropDownTarget.addEventListener("click", function(e){
+loginDropDown.addEventListener("click", function(e){
   e.preventDefault();
   if(!dropdownShown) {
-    dropDownTarget.classList.add('flxb-dropdown--is-open');
+    loginDropDown.classList.add('flxb-dropdown--is-open');
     dropdownShown = true;    
   } else {    
-    dropDownTarget.classList.remove('flxb-dropdown--is-open');
+    loginDropDown.classList.remove('flxb-dropdown--is-open');
     dropdownShown = false;
     
   }
-});
-
-closeDropDown.addEventListener("click", function(){ 
-  dropDownTarget.classList.remove('flxb-dropdown--is-open');
 });
 
 // TESTIMONIALS
@@ -70,3 +65,5 @@ const indicatorImages=document.querySelector(".testimonials-slider-indicator").c
 
    })
  }
+
+ 
