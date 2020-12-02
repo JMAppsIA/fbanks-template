@@ -46,24 +46,74 @@ loginDropDown.addEventListener("click", function(e){
 
 // TESTIMONIALS
 
-const slides=document.querySelector(".testimonials-slider").children;
-const indicatorImages=document.querySelector(".testimonials-slider-indicator").children;
+const slides=document.querySelector(".testimonials-slider")?document.querySelector(".testimonials-slider").children:null;
+const indicatorImages=document.querySelector(".testimonials-slider-indicator")?document.querySelector(".testimonials-slider-indicator").children:null;
 
- for(let i=0; i<indicatorImages.length; i++){
-   indicatorImages[i].addEventListener("click",function(){
-      
-        for(let j=0; j<indicatorImages.length; j++){
-          indicatorImages[j].classList.remove("active");
-        }
-         this.classList.add("active");
-         const id=this.getAttribute("data-id");
-        for(let j=0; j<slides.length; j++){
-          slides[j].classList.remove("active");
-        }
+if(slides && indicatorImages) {
+   for(let i=0; i<indicatorImages.length; i++){
+     indicatorImages[i].addEventListener("click",function(){
+        
+          for(let j=0; j<indicatorImages.length; j++){
+            indicatorImages[j].classList.remove("active");
+          }
+           this.classList.add("active");
+           const id=this.getAttribute("data-id");
+          for(let j=0; j<slides.length; j++){
+            slides[j].classList.remove("active");
+          }
+  
+           slides[id].classList.add("active");
+  
+     })
+   }
 
-         slides[id].classList.add("active");
+}
 
-   })
- }
+//  FORM
+const inputs = document.querySelectorAll(".form-input");
+// const input = document.querySelector('.form-input');
+const label = document.querySelector('.form-label');
 
+function addcl(){
+  let parent = this.parentNode;
+  // let children = parent.childNodes.includes('input');
+	parent.classList.add("active");
+}
+
+function remcl(){
+	let parent = this.parentNode;
+  let children = parent.childNodes[1];
+	if(this.value == ""){
+		parent.classList.remove("active");
+	}
+}
+
+
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
+
+// select
+const select = document.querySelector('.rd--select');
+select.addEventListener('click', function() {
+  this.classList.toggle('opened');
+})
+const item = document.querySelectorAll(".rd--select-list-item");
+for (const option of item) {
+  option.addEventListener('click', function() {
+          console.log("this.classList -> ", this.classList);
+      if (!this.classList.contains('selected')) {
+          // this.querySelector('.rd--select-list-item.selected').classList.remove('selected');
+          // this.classList.add('selected');
+          this.parentNode.parentNode.classList.add('has-value');
+          console.log("this.parentNode.parentNode -> ", this.parentNode.parentNode);
+          const content = this.parentNode.parentNode.querySelector('.rd--select-content');
+          
+          console.log("content -> " , content);
+          console.log("this.textContent -> ", this.textContent);
+          this.closest('.rd--select').querySelector('.rd--select-input .rd--select-content span').textContent = this.textContent;
+      }
+  })
+}
  
